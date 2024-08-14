@@ -41,4 +41,4 @@ d                                 n   overlay(dspInd_DS:21)
 
 💬 determine if Referential Integrity is necessary and build constraints
 While in a perfect world referential integrity is wonderful, in the world of IBM i that has years of program
-described rules, it can work against you. Unless you have a mandate to use it not really for conversion.
+described rules, it can work against you. Unless you have a mandate to use it I would not recommend not for a conversion project.

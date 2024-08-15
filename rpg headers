@@ -1,9 +1,7 @@
 For RPGLE programs use the following headers
-
      H DFTACTGRP(*NO) ACTGRP(*NEW) FIXNBR(*ZONED:*INPUTPACKED)
      H option(*srcstmt : *nodebugio : *noshowcpy)  
 
 For Free form RPGLE use the following headers
-
       ctl-opt dftactgrp(*no) actgrp(*new) option(*nodebugio:*srcstmt:*nounref) ;
       Exec SQL Set Option DatFmt = *ISO;       

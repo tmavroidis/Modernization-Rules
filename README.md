@@ -1,5 +1,43 @@
 # Modernization-Rules
 <h1>Overview</h1>
+
+<h2>Cleanup your code</h2>
+<h3>Find unused objects, thanks Bob Cosi (https://www.linkedin.com/pulse/find-unused-objects-ibm-i-using-sql-bob-cozzi)</h3>
+<p>Move out all object that are not being used</p>
+<p>Move out all members from source files that are not being used</p>
+
+      select 
+      od.objLONGSCHEMA as OBJLIB,  -- V7R2
+      -- od.OBJLIB,  -- V7R3+
+      od.objname,
+      od.objtype,
+      od.objAttribute as objAttr,
+      od.objsize,
+      od.objowner,
+      od.objdefiner AS OBJCREATOR,
+      CAST(od.objcreated AS DATE) crtdate,
+      -- last-used-timestamp's time component is garbage,
+      -- so we throw it away with this CAST as DATE
+      CAST(od.last_used_timestamp AS DATE) AS LASTUSEDDATE,
+      CASE WHEN od.LAST_USED_TIMESTAMP IS NULL THEN '*UNKNOWN'
+         ELSE LPAD( CAST(
+               -- Check if the object is "old" using the
+               -- MONTHS_BETWEEN function (introduced in V7R2)
+       CAST(MONTHS_BETWEEN(current_timestamp, od.last_used_timestamp) AS
+              DEC(7, 1)) AS VARCHAR(10)), 10)
+       END IDLE_MONTHS,  -- The result is the idle period
+
+     -- If you are on V7R3 and the Created-on System name is useful,
+     -- then include these two additional columns that are
+     -- not available on V7R2
+       --   OD.CREATED_SYSTEM ,
+       --   OD.CREATED_SYSTEM_VERSION,
+      od.objtext
+      -- Change library and object type as desired
+    FROM TABLE (object_Statistics('*ALLUSR', '*ALL')) OD
+    WHERE OD.Last_used_timestamp < current_date - 24 months
+
+
 <h2>Stage 1</h2>
 
 💬 Convert all programs to ILE-RPG

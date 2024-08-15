@@ -5,7 +5,7 @@
 <h3>Find unused objects, thanks to Bob Cosi for the script (https://www.linkedin.com/pulse/find-unused-objects-ibm-i-using-sql-bob-cozzi)</h3>
 <p>Move out all object that are not being used</p>
 <p>Move out all members from source files that are either not being used or haven't been used in a couple of years
-I usually move them into a temp library used just for this purpose, create a savf of them in a archive library, then delete the temp library .</p>
+I usually move them into a temp library used just for this purpose, create a savf of them in a archive library (you can use my program at https://github.com/tmavroidis/archivelib) , then delete the temp library .</p>
 
       select 
       od.objLONGSCHEMA as OBJLIB,  -- V7R2

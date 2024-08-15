@@ -1,7 +1,7 @@
 # Modernization-Rules
 <h1>Overview</h1>
 
-<h2>Before you do anything else, Cleanup your machine and code</h2>
+<h2>Stage 0 - Before you do anything else, Cleanup your machine and code</h2>
 <h3>Find unused objects, thanks to Bob Cosi for the script (https://www.linkedin.com/pulse/find-unused-objects-ibm-i-using-sql-bob-cozzi)</h3>
 <p>Move out all object that are not being used</p>
 <p>Move out all members from source files that are either not being used or haven't been used in a couple of years

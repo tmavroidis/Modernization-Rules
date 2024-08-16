@@ -4,4 +4,4 @@ For RPGLE programs use the following headers
 
 For Free form RPGLE use the following headers
       ctl-opt dftactgrp(*no) actgrp(*new) option(*nodebugio:*srcstmt:*nounref) ;
-      Exec SQL Set Option DatFmt = *ISO;       
+      exec sql set option DatFmt = *iso, COMMIT=*none, closqlcsr = *endmod;   
